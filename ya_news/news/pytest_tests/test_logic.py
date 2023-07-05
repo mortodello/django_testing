@@ -39,11 +39,11 @@ def test_user_cant_use_bad_words(author_client, id_for_news):
     response = author_client.post(url, data=bad_words_data)
     # Проверяем, есть ли в ответе ошибка формы.
     assertFormError(
-            response,
-            form='form',
-            field='text',
-            errors=WARNING
-        )
+        response,
+        form='form',
+        field='text',
+        errors=WARNING
+    )
     # Дополнительно убедимся, что комментарий не был создан.
     comments_count = Comment.objects.count()
     assert comments_count == 0

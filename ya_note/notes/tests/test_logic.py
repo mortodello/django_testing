@@ -20,7 +20,7 @@ class TestLogic(TestCase):
         cls.form_data = {
             'title': 'Anonymus',
             'text': 'Anonymus text',
-            }
+        }
         cls.AUTO_SLUG = 'anonymus'
         cls.NOTES_IN_DB = 0
         cls.CREATED_NOTES_IN_DB = 1
@@ -74,7 +74,7 @@ class TestNoteEditDelete(TestCase):
         cls.form_data = {
             'title': 'Заголовок',
             'text': cls.NEW_NOTE_TEXT
-            }
+        }
 
     def test_author_can_delete_note(self):
         response = self.author_client.delete(self.delete_url)

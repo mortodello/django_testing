@@ -75,7 +75,7 @@ def comment_set(news, author, author_client):
     for index in range(2):
         comment = Comment.objects.create(
             news=news, author=author, text=f'Tекст {index}',
-            )
+        )
         comment.created = now + timedelta(days=index)
         comment.save()
     response = author_client.get(detail_url)
