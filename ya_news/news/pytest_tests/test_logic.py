@@ -13,8 +13,7 @@ def test_anonymous_user_cant_create_comment(client, id_for_news):
     url = reverse('news:detail', args=id_for_news)
     form_data = {'text': 'Текст комментария'}
     client.post(url, data=form_data)
-    comments_count = Comment.objects.count()
-    assert comments_count == 0
+    assert Comment.objects.all().exists() is not True
 
 
 @pytest.mark.django_db
@@ -27,7 +26,7 @@ def test_user_can_create_comment(author_client, id_for_news, news, author):
     assertRedirects(response, f'{url}#comments')
     comment = Comment.objects.get()
     # Проверяем, что все атрибуты комментария совпадают с ожидаемыми.
-    assert comment.text == 'Текст комментария'
+    assert comment.text == form_data['text']
     assert comment.news == news
     assert comment.author == author
 
